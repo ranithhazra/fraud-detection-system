@@ -1,0 +1,62 @@
+# ==============================================================================
+# Git Ignore Configuration - Python Machine Learning Fraud Detection Project
+# ==============================================================================
+
+# --- Python & Virtual Environments ---
+.venv/
+venv/
+env/
+ENV/
+bin/
+lib/
+include/
+share/
+
+# --- Python Cache & Compiled Files ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- Jupyter Notebook Checkpoints ---
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# --- Configuration & Environment Secrets ---
+.env
+.env.local
+.env.*.local
+*.secret
+
+# --- Machine Learning Models & Serialized Objects (Pickle files) ---
+*.pkl
+*.joblib
+*.pb
+*.h5
+
+# --- Large Datasets ---
+# Explicit CSV files
+data/fraudTrain.csv
+data/fraudTrain (1).csv
+data/fraudTest.csv
+data/fraudTest (1).csv
+data/processed_train.csv
+data/processed_test.csv
+
+# Backup generic pattern for any dataset dumps
+data/*.csv
+data/*.zip
+data/*.tar.gz
+
+# --- Local Databases ---
+# SQLite files generated during runtime tests
+database/fraud_db.sqlite
+database/*.sqlite
+database/*.db
+
+# --- OS Specific Files ---
+.DS_Store
+Thumbs.db

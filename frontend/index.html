@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BankGuard AI - Real-time Fraud Detection Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <span class="brand-logo">BankGuard AI</span>
+            </div>
+            
+            <nav class="nav-list">
+                <li>
+                    <a href="index.html" class="nav-link active" id="nav-dashboard">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="analytics.html" class="nav-link" id="nav-analytics">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                        <span>Analytics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="alerts.html" class="nav-link" id="nav-alerts">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        <span>Fraud Alerts</span>
+                    </a>
+                </li>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="theme-toggle-container">
+                    <span>Dark Mode</span>
+                    <div style="display: flex; gap: 0.25rem;">
+                        <button class="theme-toggle-btn active" id="theme-dark-btn" aria-label="Dark Mode">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                        </button>
+                        <button class="theme-toggle-btn" id="theme-light-btn" aria-label="Light Mode">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Nav -->
+            <header class="top-nav">
+                <div class="page-title">
+                    <h1>Core Dashboard</h1>
+                    <p>Overview of system health, transaction testing, and real-time inference log.</p>
+                </div>
+                <div class="status-badge-container">
+                    <div class="threat-badge low" id="threat-badge">
+                        <div class="pulse-dot"></div>
+                        <span id="threat-text">System Status: Secure</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- KPI Summary Cards -->
+            <section class="kpi-grid">
+                <div class="card kpi-card">
+                    <div class="kpi-header">
+                        <span>Total Verified</span>
+                        <div class="kpi-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        </div>
+                    </div>
+                    <span class="kpi-value" id="kpi-total">-</span>
+                </div>
+                <div class="card kpi-card genuine">
+                    <div class="kpi-header">
+                        <span>Genuine Transactions</span>
+                        <div class="kpi-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        </div>
+                    </div>
+                    <span class="kpi-value" id="kpi-genuine">-</span>
+                </div>
+                <div class="card kpi-card fraud">
+                    <div class="kpi-header">
+                        <span>Fraud Flagged</span>
+                        <div class="kpi-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><octagon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        </div>
+                    </div>
+                    <span class="kpi-value" id="kpi-fraud">-</span>
+                </div>
+                <div class="card kpi-card rate">
+                    <div class="kpi-header">
+                        <span>Threat Percentage</span>
+                        <div class="kpi-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                        </div>
+                    </div>
+                    <span class="kpi-value" id="kpi-rate">-%</span>
+                </div>
+            </section>
+            
+            <!-- Interactive Area -->
+            <div class="dashboard-grid">
+                <!-- Transaction Form Card -->
+                <div class="card">
+                    <div class="section-header">
+                        <h2>Transaction Analysis Simulator</h2>
+                        <div class="quick-actions">
+                            <button type="button" class="btn-secondary" id="btn-load-genuine">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                Sample Genuine
+                            </button>
+                            <button type="button" class="btn-secondary" id="btn-load-fraud" style="color: var(--danger);">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+                                Sample Fraud
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <form id="predict-form" class="grid-form">
+                        <div class="form-group">
+                            <label for="merchant">Merchant Name</label>
+                            <input type="text" id="merchant" name="merchant" placeholder="e.g. fraud_Krunck" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Transaction Category</label>
+                            <select id="category" name="category" required>
+                                <option value="" disabled selected>Select Category</option>
+                                <option value="grocery_pos">Grocery (POS)</option>
+                                <option value="shopping_net">Shopping (Online)</option>
+                                <option value="shopping_pos">Shopping (POS)</option>
+                                <option value="gas_transport">Gas & Transport</option>
+                                <option value="entertainment">Entertainment</option>
+                                <option value="food_dining">Food & Dining</option>
+                                <option value="personal_care">Personal Care</option>
+                                <option value="health_fitness">Health & Fitness</option>
+                                <option value="travel">Travel</option>
+                                <option value="kids_pets">Kids & Pets</option>
+                                <option value="home">Home</option>
+                                <option value="misc_net">Miscellaneous (Online)</option>
+                                <option value="misc_pos">Miscellaneous (POS)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="amt">Transaction Amount ($)</label>
+                            <input type="number" id="amt" name="amt" step="0.01" min="0.01" placeholder="e.g. 58.42" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Cardholder Gender</label>
+                            <select id="gender" name="gender" required>
+                                <option value="" disabled selected>Select Gender</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">Cardholder City</label>
+                            <input type="text" id="city" name="city" placeholder="e.g. Phoenix" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <input type="text" id="state" name="state" maxlength="2" placeholder="e.g. AZ" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="zip">Zip Code</label>
+                            <input type="number" id="zip" name="zip" placeholder="e.g. 85001" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city_pop">City Population</label>
+                            <input type="number" id="city_pop" name="city_pop" placeholder="e.g. 1600000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lat">Cardholder Latitude</label>
+                            <input type="number" id="lat" name="lat" step="0.0001" placeholder="e.g. 33.4484" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="long">Cardholder Longitude</label>
+                            <input type="number" id="long" name="long" step="0.0001" placeholder="e.g. -112.0740" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="merch_lat">Merchant Latitude</label>
+                            <input type="number" id="merch_lat" name="merch_lat" step="0.0001" placeholder="e.g. 33.4812" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="merch_long">Merchant Longitude</label>
+                            <input type="number" id="merch_long" name="merch_long" step="0.0001" placeholder="e.g. -112.1023" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="job">Cardholder Job</label>
+                            <input type="text" id="job" name="job" placeholder="e.g. Software Engineer" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Cardholder Date of Birth</label>
+                            <input type="date" id="dob" name="dob" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="trans_date_trans_time">Transaction Date & Time (Optional)</label>
+                            <input type="text" id="trans_date_trans_time" name="trans_date_trans_time" placeholder="Leave empty for current time. Format: YYYY-MM-DD HH:MM:SS">
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <button type="submit" class="btn-primary" id="btn-submit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                                Run Risk Analysis
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Prediction Output Card -->
+                <div class="card prediction-card" id="prediction-output">
+                    <div class="empty-state" id="output-empty-state">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <h3>Awaiting Inference</h3>
+                        <p>Enter the transaction metadata on the left and trigger the simulation to run XGBoost inference.</p>
+                    </div>
+                    
+                    <div class="spinner" id="output-spinner" style="display: none;"></div>
+                    
+                    <div id="output-data" style="display: none; width: 100%;">
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem; width: 100%;">
+                            <h2 style="font-family: 'Outfit'; font-size: 1.25rem;">Analysis Completed</h2>
+                            
+                            <div class="gauge-wrapper">
+                                <svg class="gauge-svg" width="180" height="180" viewBox="0 0 160 160">
+                                    <circle class="gauge-bg" cx="80" cy="80" r="70"></circle>
+                                    <circle class="gauge-fill" id="gauge-circle" cx="80" cy="80" r="70"></circle>
+                                </svg>
+                                <div class="gauge-text">
+                                    <span class="gauge-percentage" id="gauge-val">0%</span>
+                                    <span class="gauge-label">Risk Probability</span>
+                                </div>
+                            </div>
+                            
+                            <span class="result-badge" id="output-badge">GENUINE</span>
+                            
+                            <div class="result-details">
+                                <div class="detail-row">
+                                    <span class="detail-label">Transaction ID</span>
+                                    <span class="detail-value" id="detail-id">-</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Threat Class</span>
+                                    <span class="detail-value" id="detail-status">-</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Calculated Distance</span>
+                                    <span class="detail-value" id="detail-distance">- km</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Cardholder Age</span>
+                                    <span class="detail-value" id="detail-age">- yrs</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Local Time Frame</span>
+                                    <span class="detail-value" id="detail-time">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Transactions Logs -->
+            <section class="card table-card">
+                <div class="section-header">
+                    <h2>Live Prediction Logs</h2>
+                    <span style="font-size: 0.8rem; color: var(--text-secondary);">Last 10 queries</span>
+                </div>
+                
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Transaction ID</th>
+                                <th>Timestamp</th>
+                                <th>Merchant</th>
+                                <th>Category</th>
+                                <th>Amount</th>
+                                <th>Risk Level</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transaction-log-body">
+                            <tr>
+                                <td colspan="7" style="text-align: center; color: var(--text-secondary);">Loading logs...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BankGuard AI - Fraud Analytics & Insights</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <span class="brand-logo">BankGuard AI</span>
+            </div>
+            
+            <nav class="nav-list">
+                <li>
+                    <a href="index.html" class="nav-link" id="nav-dashboard">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="analytics.html" class="nav-link active" id="nav-analytics">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                        <span>Analytics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="alerts.html" class="nav-link" id="nav-alerts">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        <span>Fraud Alerts</span>
+                    </a>
+                </li>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="theme-toggle-container">
+                    <span>Dark Mode</span>
+                    <div style="display: flex; gap: 0.25rem;">
+                        <button class="theme-toggle-btn active" id="theme-dark-btn" aria-label="Dark Mode">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                        </button>
+                        <button class="theme-toggle-btn" id="theme-light-btn" aria-label="Light Mode">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Nav -->
+            <header class="top-nav">
+                <div class="page-title">
+                    <h1>System Analytics</h1>
+                    <p>Aggregated statistics and predictive threat vectors modeled from SQLite logs.</p>
+                </div>
+                <div class="status-badge-container">
+                    <div class="threat-badge elevated" id="threat-badge">
+                        <div class="pulse-dot"></div>
+                        <span id="threat-text">Status: Analyzing Metrics</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- KPI Summary Cards -->
+            <section class="kpi-grid">
+                <div class="card kpi-card">
+                    <div class="kpi-header">
+                        <span>Total Queries</span>
+                        <div class="kpi-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        </div>
+                    </div>
+                    <span class="kpi-value" id="kpi-total">-</span>
+                </div>
+                <div class="card kpi-card genuine">
+                    <div class="kpi-header">
+                        <span>Genuine Predictions</span>
+                        <div class="kpi-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        </div>
+                    </div>
+                    <span class="kpi-value" id="kpi-genuine">-</span>
+                </div>
+                <div class="card kpi-card fraud">
+                    <div class="kpi-header">
+                        <span>Frauds Blocked</span>
+                        <div class="kpi-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><octagon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        </div>
+                    </div>
+                    <span class="kpi-value" id="kpi-fraud">-</span>
+                </div>
+                <div class="card kpi-card rate">
+                    <div class="kpi-header">
+                        <span>Overall Fraud Rate</span>
+                        <div class="kpi-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                        </div>
+                    </div>
+                    <span class="kpi-value" id="kpi-rate">-%</span>
+                </div>
+            </section>
+            
+            <!-- Charts Grid -->
+            <section class="charts-grid">
+                <!-- Chart 1: Category Distribution -->
+                <div class="card chart-card">
+                    <div class="section-header">
+                        <h2>Fraud Prevalence by Category</h2>
+                        <span style="font-size: 0.75rem; color: var(--text-secondary);">Fraud vs Genuine count</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Chart 2: Hourly Fraud Patterns -->
+                <div class="card chart-card">
+                    <div class="section-header">
+                        <h2>Diurnal Fraud Activity</h2>
+                        <span style="font-size: 0.75rem; color: var(--text-secondary);">Flagged rate by hour (00h - 23h)</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="hourlyChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Chart 3: Risk Distribution -->
+                <div class="card chart-card">
+                    <div class="section-header">
+                        <h2>Transaction Risk Distribution</h2>
+                        <span style="font-size: 0.75rem; color: var(--text-secondary);">Count of Low, Medium, and High risk predictions</span>
+                    </div>
+                    <div class="chart-container" style="max-height: 250px; display: flex; justify-content: center;">
+                        <canvas id="riskChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Chart 4: Volume Breakdown -->
+                <div class="card chart-card">
+                    <div class="section-header">
+                        <h2>Transaction Volume Ratio</h2>
+                        <span style="font-size: 0.75rem; color: var(--text-secondary);">Total volume vs Flagged cases</span>
+                    </div>
+                    <div class="chart-container" style="max-height: 250px; display: flex; justify-content: center;">
+                        <canvas id="volumeChart"></canvas>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Statistical Insights Card -->
+            <section class="card">
+                <div class="section-header" style="margin-bottom: 0.75rem;">
+                    <h2>Threat Vector Analysis</h2>
+                </div>
+                <div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; display: flex; flex-direction: column; gap: 0.75rem;">
+                    <p>Our pre-trained XGBoost ensemble models indicate specific high-risk transactional vectors. The most prominent indicators of fraud are:</p>
+                    <ul style="padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.4rem;">
+                        <li><strong>Geographical Disparity:</strong> Transactions executed at merchants where Euclidean distance exceeds 1.5 units (approx. 100+ miles) from the cardholder's zip coordinates show a 93.4% high-risk correlation.</li>
+                        <li><strong>Nighttime Spikes:</strong> Card actions recorded between <strong>10:00 PM and 3:00 AM local time</strong> have a significantly higher incidence of fraudulent alerts, specifically in the <em>shopping_net</em> and <em>misc_net</em> categories.</li>
+                        <li><strong>High Amount Anomalies:</strong> Amounts exceeding $500.00 that deviate significantly from a user's normal historical patterns undergo severe standard-scaling penalties, resulting in high predictive probabilities.</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="js/dashboard.js"></script>
+    <script src="js/charts.js"></script>
+</body>
+</html>
