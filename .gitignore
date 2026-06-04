@@ -32,7 +32,7 @@ htmlcov/
 *.secret
 
 # --- Machine Learning Models & Serialized Objects (Pickle files) ---
-*.pkl
+
 *.joblib
 *.pb
 *.h5
