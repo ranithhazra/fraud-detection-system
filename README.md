@@ -47,3 +47,14 @@ tests/
 - SHAP Explainable AI
 - SMS & Email Alerts
 - Advanced Analytics Dashboard
+
+## Screenshots
+
+### Dashboard
+![Dashboard](images/dashboard.png)
+
+### Analytics
+![Analytics](images/analytics.png)
+
+### Fraud Alerts
+![Alerts](images/alerts.png)
