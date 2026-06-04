@@ -1,3 +1,5 @@
+const API_BASE = "https://fraud-detection-system-fcb7.onrender.com";
+
 let categoryChart, hourlyChart, riskChart, volumeChart;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -16,11 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
 async function loadAnalyticsCharts() {
     try {
         // Fetch core analytics
-        const res = await fetch(`${window.location.origin}/api/analytics`);
+        const res = await fetch(`${API_BASE}/api/analytics`);
         const result = await res.json();
         
         // Fetch recent transactions (up to 100) to calculate risk distribution
-        const txRes = await fetch(`${window.location.origin}/api/transactions?limit=100`);
+        const txRes = await fetch(`${API_BASE}/api/transactions?limit=100`);
         const txResult = await txRes.json();
         
         if (result.status === 'success' && txResult.status === 'success') {

@@ -1,6 +1,8 @@
+const API_BASE = "https://fraud-detection-system-fcb7.onrender.com";
+
 document.addEventListener('DOMContentLoaded', () => {
     // API base URL configuration
-    const API_BASE = window.location.origin;
+    // API base URL configured globally
 
     // Initialize Theme Switcher
     initTheme();
@@ -64,7 +66,7 @@ async function loadKPIs() {
     if (!totalEl) return; // Not on dashboard or analytics page
 
     try {
-        const res = await fetch(`${window.location.origin}/api/analytics`);
+        const res = await fetch(`${API_BASE}/api/analytics`);
         const result = await res.json();
         
         if (result.status === 'success') {
@@ -136,7 +138,7 @@ function initPredictorPage() {
         });
 
         try {
-            const res = await fetch(`${window.location.origin}/predict`, {
+            const res = await fetch(`${API_BASE}/predict`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
@@ -264,7 +266,7 @@ async function loadTransactionLog() {
     if (!tbody) return;
 
     try {
-        const res = await fetch(`${window.location.origin}/api/transactions?limit=10`);
+        const res = await fetch(`${API_BASE}/api/transactions?limit=10`);
         const result = await res.json();
         
         if (result.status === 'success' && result.count > 0) {
@@ -314,7 +316,7 @@ async function initAlertsPage() {
         `;
         
         try {
-            const res = await fetch(`${window.location.origin}/api/alerts?limit=50`);
+            const res = await fetch(`${API_BASE}/api/alerts?limit=50`);
             const result = await res.json();
             
             if (result.status === 'success') {
