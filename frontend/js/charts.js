@@ -1,4 +1,4 @@
-const API_BASE = "https://fraud-detection-system-fcb7.onrender.com";
+var API_BASE = "https://fraud-detection-system-fcb7.onrender.com";
 
 let categoryChart, hourlyChart, riskChart, volumeChart;
 
